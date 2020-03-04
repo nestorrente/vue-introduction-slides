@@ -1,0 +1,214 @@
+//@tailwind base;
+//@tailwind utilities;
+//@tailwind components;
+@import "variables";
+
+body {
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+input,
+textarea,
+button {
+	font-size: .8em;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+.vue-font {
+	font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+.slideshow-container {
+	background: white;
+	transition: background .3s;
+
+	&.dark-mode {
+		background: $vue-color-dark;
+	}
+
+}
+
+.slideshow {
+	perspective: 600px;
+	perspective-origin: 50% 40%;
+
+	color: $vue-color-dark;
+
+	.dark-mode & {
+		color: white;
+	}
+}
+
+.slide {
+	padding: $slide-vertical-padding $slide-horizontal-padding;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+}
+
+h1 {
+	color: $vue-color;
+	text-shadow: $text-shadown-offset $text-shadown-offset black;
+}
+
+p {
+	margin-top: 1em;
+}
+
+ul {
+	margin-top: .5em;
+}
+
+h1 {
+	margin-bottom: 0.65em;
+}
+
+h2 {
+	margin-bottom: 0.6em;
+}
+
+h3 {
+	margin-bottom: 0.55em;
+}
+
+h4, h5, h6, p {
+	margin-bottom: 0.5em;
+}
+
+h1 {
+	text-align: center;
+}
+
+ol, ul {
+	text-align: left;
+
+	li {
+		margin-bottom: .5em;
+	}
+}
+
+a,
+a:active,
+a:visited {
+	color: $vue-color;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+button {
+	background: darken($vue-color, 10%);
+	color: white;
+	border: 0;
+	padding: .5em .75em;
+	border-radius: .3em;
+
+	&:hover {
+		background: darken($vue-color, 9%);
+	}
+
+	&:active {
+		background: darken($vue-color, 12%);
+	}
+}
+
+input, textarea {
+	padding: 0.5em 0.75em;
+	border-radius: .3em;
+	border: 1px solid #666;
+	color: #444;
+}
+
+pre, code {
+	margin: 0;
+}
+
+.slideshow-state {
+	position: absolute;
+	bottom: .5em;
+	width: 100%;
+	padding: 0 2em;
+	text-align: right;
+}
+
+.control-buttons {
+
+	button {
+		font-size: 1.2em;
+		background: none;
+		color: $vue-color-dark;
+		opacity: .5;
+		transition-property: opacity, transform;
+		transition-duration: .2s;
+		transition-timing-function: ease;
+
+		&:hover {
+			opacity: 1;
+			transform: scale(1.1);
+		}
+
+		&:disabled {
+			pointer-events: none;
+			opacity: .2;
+		}
+
+		.dark-mode & {
+			color: white;
+		}
+	}
+}
+
+.hljs {
+	font-size: .6em;
+	text-shadow: none;
+	tab-size: 2;
+}
+
+.window {
+	border-radius: 0.25em;
+	overflow: hidden;
+	color: $vue-color-dark;
+
+	.header {
+		background: #eee;
+		background: linear-gradient(0deg, #e3e3e3 0%, #eee 100%);
+
+		.window-header-button {
+			display: block;
+			float: left;
+			width: .5em;
+			height: .5em;
+			background: blue;
+			border-radius: 50%;
+			margin: .3em;
+			margin-right: 0.05em;
+
+			&:nth-child(1) {
+				background: #ff4b50;
+			}
+
+			&:nth-child(2) {
+				background: #fbc716;
+			}
+
+			&:nth-child(3) {
+				background: #00dd41;
+			}
+		}
+
+		&:after {
+			display: block;
+			content: ' ';
+			clear: both;
+		}
+	}
+
+	.content {
+		background: #f8f8f8;
+		padding: 0.5em;
+	}
+
+}

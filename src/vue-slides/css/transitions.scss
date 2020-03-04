@@ -1,0 +1,48 @@
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity .3s;
+}
+
+.fade-enter,
+.fade-leave-to,
+.fade-leave-active {
+	opacity: 0
+}
+
+.slow-fade-enter-active,
+.slow-fade-leave-active {
+	transition: opacity 1s ease-in;
+}
+
+.slow-fade-enter,
+.slow-fade-leave-to,
+.slow-fade-leave-active {
+	opacity: 0
+}
+
+$duration: .8s;
+$timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+$translation: 100vw;
+$rotation: 90deg;
+
+.slide-change-backwards-enter-active,
+.slide-change-forward-enter-active,
+.slide-change-backwards-leave-active,
+.slide-change-forward-leave-active {
+	transition: transform-origin $duration $timing-function,
+	transform $duration $timing-function,
+	visibility $duration $timing-function,
+	opacity $duration $timing-function;
+}
+
+.slide-change-backwards-enter,
+.slide-change-forward-leave-to,
+.slide-change-forward-leave-active {
+	transform: translate3d(-$translation, 0, 0) rotateY($rotation) translate3d(-$translation, 0, 0);
+}
+
+.slide-change-backwards-leave-to,
+.slide-change-backwards-leave-active,
+.slide-change-forward-enter {
+	transform: translate3d($translation, 0, 0) rotateY(-$rotation) translate3d($translation, 0, 0);
+}

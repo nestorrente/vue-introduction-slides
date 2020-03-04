@@ -1,0 +1,21 @@
+<template>
+	<div>
+		<p>
+			Hello,
+			{{ name || 'anonymous' }}!
+		</p>
+		<p>
+			<input type="text" v-model="name">
+		</p>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				name: 'Vue'
+			};
+		}
+	};
+</script>

@@ -1,0 +1,37 @@
+{
+	"name": "vue-ts-app-template",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve --port 3000",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"@types/hammerjs": "^2.0.36",
+		"@types/highlight.js": "^9.12.3",
+		"core-js": "^2.6.5",
+		"highlight.js": "^9.18.1",
+		"tailwindcss": "^1.2.0",
+		"vue": "^2.6.10",
+		"vue-class-component": "^7.0.2",
+		"vue-highlight.js": "^3.1.0",
+		"vue-property-decorator": "^8.1.0",
+		"vue-router": "^3.0.3",
+		"vue-touch": "^2.0.0-beta.4"
+	},
+	"devDependencies": {
+		"@fortawesome/fontawesome-free": "^5.9.0",
+		"@mdi/font": "^3.8.95",
+		"@vue/cli-plugin-babel": "^3.9.0",
+		"@vue/cli-plugin-typescript": "^3.9.0",
+		"@vue/cli-service": "^4.2.3",
+		"deepmerge": "^4.0.0",
+		"fibers": "^4.0.1",
+		"raw-loader": "^4.0.0",
+		"sass": "^1.26.2",
+		"sass-loader": "^7.1.0",
+		"typescript": "^3.8.3",
+		"vue-template-compiler": "^2.6.10"
+	}
+}

@@ -1,0 +1,32 @@
+.appearable {
+	transition: opacity .3s;
+
+	&:not(.appear) {
+		opacity: 0;
+	}
+}
+
+.appearable.left,
+.appearable.right,
+.appearable.top,
+.appearable.bottom {
+	transition: opacity .3s, transform .3s;
+}
+
+$translation-position: 1em;
+
+.appearable.left:not(.appear) {
+	transform: translate(-$translation-position, 0);
+}
+
+.appearable.right:not(.appear) {
+	transform: translate($translation-position, 0);
+}
+
+.appearable.top:not(.appear) {
+	transform: translate(0, -$translation-position);
+}
+
+.appearable.bottom:not(.appear) {
+	transform: translate(0, $translation-position);
+}

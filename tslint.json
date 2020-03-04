@@ -1,0 +1,47 @@
+{
+	"defaultSeverity": "warning",
+	"extends": [
+		"tslint:recommended"
+	],
+	"linterOptions": {
+		"exclude": [
+			"node_modules/**",
+			"src/VuetifyComponents.ts"
+		]
+	},
+	"rules": {
+		"quotemark": [
+			true,
+			"single"
+		],
+		"indent": [
+			true,
+			"tabs",
+			4
+		],
+		"member-ordering": false,
+		"interface-name": false,
+		"ordered-imports": false,
+		"object-literal-sort-keys": false,
+		"no-consecutive-blank-lines": false,
+		"radix": false,
+		"max-line-length": [
+			true,
+			200
+		],
+		"trailing-comma": [
+			true,
+			{
+				"singleline": "never",
+				"multiline": {
+					"objects": "ignore",
+					"arrays": "ignore",
+					"functions": "never",
+					"typeLiterals": "ignore"
+				}
+			}
+		],
+		"no-console": false,
+		"arrow-parens": false
+	}
+}
