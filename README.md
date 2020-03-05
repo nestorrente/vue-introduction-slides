@@ -1,4 +1,4 @@
-# Vue + TypeScript App
+# Vue Slides
 
 ## Project setup
 ```

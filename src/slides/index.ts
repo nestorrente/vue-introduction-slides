@@ -1,16 +1,32 @@
-import Vue from 'vue';
-import WhyVueSlides from '@/slides/WhyVueSlides.vue';
+import Vue, {CreateElement, VNode} from 'vue';
 import SlideNavigation from '@/slides/SlideNavigation.vue';
-import VueSlideshowEngine from '@/vue-slides';
+import VueSlideshowEngine, {PartialSlideConfig} from '@/vue-slides';
 import AppearDirections from '@/slides/AppearDirections.vue';
 import CodeSample from '@/slides/CodeSample.vue';
 import LightMode from '@/slides/LightMode.vue';
 import Vuelcome from '@/slides/Vuelcome.vue';
 import AboutTheAuthor from '@/slides/AboutTheAuthor.vue';
-import WhatIsVue from '@/slides/WhatIsVue.vue';
 import VueFeatures from '@/slides/VueFeatures.vue';
+import AboutEvanYou from '@/slides/AboutEvanYou.vue';
 
 Vue.use(VueSlideshowEngine);
+
+function createTitleSlide(title: string): PartialSlideConfig {
+	return {
+		component: {
+			render(h: CreateElement): VNode {
+				return h('h1', {
+					class: 'flex-grow'
+				}, [title]);
+			}
+		},
+		css: {
+			slide: {
+				classes: 'flex items-center'
+			}
+		}
+	};
+}
 
 export default new VueSlideshowEngine({
 	baseRoute: '/slides',
@@ -18,14 +34,10 @@ export default new VueSlideshowEngine({
 	slides: [
 		{component: Vuelcome, darkMode: false},
 		AboutTheAuthor,
-		{component: WhatIsVue, steps: 4},
-		{component: VueFeatures, steps: 40},
-		{
-			name: 'first',
-			component: WhyVueSlides,
-			steps: 5,
-			darkMode: false
-		},
+		createTitleSlide('About Vue'),
+		AboutEvanYou,
+		{component: VueFeatures, steps: 2},
+		createTitleSlide('Components'),
 		{
 			component: AppearDirections,
 			steps: 5,

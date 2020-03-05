@@ -22,6 +22,9 @@ button {
 	background: white;
 	transition: background .3s;
 
+	//background: url('/background.png') !important;
+	//background-size: cover;
+
 	&.dark-mode {
 		background: $vue-color-dark;
 	}
@@ -128,10 +131,10 @@ pre, code {
 
 .slideshow-state {
 	position: absolute;
-	bottom: .5em;
-	width: 100%;
-	padding: 0 2em;
+	bottom: .75em;
+	right: 3.5em;
 	text-align: right;
+	color: white;
 }
 
 .control-buttons {

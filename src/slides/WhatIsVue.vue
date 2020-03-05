@@ -1,10 +1,13 @@
 <template>
-	<CommonSlideMarkup title="What is Vue.js?">
-		<p v-appear="$slides.step > 1">
+	<CommonSlideMarkup title="What is Vue.js?" class="text-center">
+		<p class="mt-16 italic">
 			Vue is a progressive framework for building user interfaces.
 		</p>
-		<p v-appear="$slides.step > 2">
-			But... <span v-appear="$slides.step > 3">what does this mean?</span>
+		<p class="mt-5">
+			&hellip;
+		</p>
+		<p v-appear="$slides.step > 1">
+			what does this mean?
 		</p>
 	</CommonSlideMarkup>
 </template>

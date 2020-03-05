@@ -1,38 +1,36 @@
 <template>
 	<CommonSlideMarkup title="Features">
-		<p v-appear="$slides.step > 1">Core features:</p>
+		<p>Core features:</p>
 		<div class="grid grid-cols-2">
 			<ul>
 				<li
 						v-for="(feature, index) in features1"
-						v-appear="$slides.step > 2 + index"
 						v-text="feature"
 				></li>
 			</ul>
 			<ul>
 				<li
 						v-for="(feature, index) in features2"
-						v-appear="$slides.step > 7 + index"
 						v-text="feature"
 				></li>
 			</ul>
 		</div>
-		<p v-appear="$slides.step > 12">Extra features:</p>
-		<div class="grid grid-cols-2">
-			<ul>
-				<li
-						v-for="(feature, index) in extraFeatures1"
-						v-appear="$slides.step > 13 + index"
-						v-text="feature"
-				></li>
-			</ul>
-			<ul>
-				<li
-						v-for="(feature, index) in extraFeatures2"
-						v-appear="$slides.step > 15 + index"
-						v-text="feature"
-				></li>
-			</ul>
+		<div v-appear="$slides.step > 1">
+			<p>Extra features:</p>
+			<div class="grid grid-cols-2">
+				<ul>
+					<li
+							v-for="(feature, index) in extraFeatures1"
+							v-text="feature"
+					></li>
+				</ul>
+				<ul>
+					<li
+							v-for="(feature, index) in extraFeatures2"
+							v-text="feature"
+					></li>
+				</ul>
+			</div>
 		</div>
 	</CommonSlideMarkup>
 </template>
@@ -68,6 +66,7 @@
 		];
 
 		private extraFeatures2: string[] = [
+			'Internationalization - Vue I18m',
 			'Server-Side Rendering - Nuxt.js',
 		];
 

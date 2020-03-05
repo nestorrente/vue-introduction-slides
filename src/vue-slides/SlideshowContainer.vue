@@ -26,14 +26,14 @@
 						/>
 					</transition>
 
-					<p class="slideshow-state">
-						{{ $slides.slide.index + 1 }}
-						/
-						{{ $slidesConfig.slides.length }}
-					</p>
-
 				</template>
 			</div>
+
+			<p class="slideshow-state">
+				{{ $slides.slide.index + 1 }}
+				/
+				{{ $slidesConfig.slides.length }}
+			</p>
 
 			<ControlButtons/>
 		</div>
