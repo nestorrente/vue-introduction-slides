@@ -1,7 +1,7 @@
 <template>
 	<CommonSlideMarkup title="Template option">
 		<div class="grid grid-cols-2 gap-5 items-center mt-12">
-			<highlight-code v-for="(code, index) in codes" :lang="'vue'">
+			<highlight-code v-for="(code, index) in codes" :key="index" :lang="'vue'">
 				{{code}}
 			</highlight-code>
 		</div>
