@@ -66,7 +66,7 @@
 		];
 
 		private extraFeatures2: string[] = [
-			'Internationalization - Vue I18m',
+			'Internationalization - Vue I18n',
 			'Server-Side Rendering - Nuxt.js',
 		];
 

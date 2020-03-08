@@ -8,6 +8,9 @@ import Vuelcome from '@/slides/Vuelcome.vue';
 import AboutTheAuthor from '@/slides/AboutTheAuthor.vue';
 import VueFeatures from '@/slides/VueFeatures.vue';
 import AboutEvanYou from '@/slides/AboutEvanYou.vue';
+import VueInstance from '@/slides/VueInstance.vue';
+import TemplateOption from '@/slides/TemplateOption.vue';
+import RenderFunction from '@/slides/RenderFunction.vue';
 
 Vue.use(VueSlideshowEngine);
 
@@ -37,7 +40,19 @@ export default new VueSlideshowEngine({
 		createTitleSlide('About Vue'),
 		AboutEvanYou,
 		{component: VueFeatures, steps: 2},
-		createTitleSlide('Components'),
+		createTitleSlide('Vue instance & Components'),
+		VueInstance,
+		TemplateOption,
+		RenderFunction,
+		createTitleSlide('State management'),
+		createTitleSlide('Calling external APIs'),
+		createTitleSlide('Performance'),
+		createTitleSlide('Testing'),
+		createTitleSlide('Tooling & Community'),
+		createTitleSlide('What\'s next?'),
+		createTitleSlide('Vue Router'),
+		createTitleSlide('Vue I18n'),
+		createTitleSlide('SSR - Nuxt.js'),
 		{
 			component: AppearDirections,
 			steps: 5,

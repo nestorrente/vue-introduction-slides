@@ -19,14 +19,16 @@ button {
 }
 
 .slideshow-container {
-	background: white;
-	transition: background .3s;
+	transition-property: background-color, background-image;
+	transition-duration: .3s;
 
-	//background: url('/background.png') !important;
-	//background-size: cover;
+	background-color: white;
+	background-image: url('/background-light.png');
+	background-size: cover;
 
 	&.dark-mode {
-		background: $vue-color-dark;
+		background-color: $vue-color-dark;
+		background-image: url('/background-dark.png');
 	}
 
 }
@@ -56,7 +58,7 @@ h1 {
 }
 
 p {
-	margin-top: 1em;
+	margin-top: .5em;
 }
 
 ul {
@@ -129,12 +131,24 @@ pre, code {
 	margin: 0;
 }
 
-.slideshow-state {
+code:not(.hljs) {
+	background: darken($vue-color-dark, 10%);
+	padding: 0.1em .2em;
+	border-radius: 0.2em;
+	font-size: 0.9em;
+	color: $vue-color;
+}
+
+.slideshow-pagination {
 	position: absolute;
 	bottom: .75em;
 	right: 3.5em;
 	text-align: right;
-	color: white;
+	color: $vue-color-dark;
+
+	.dark-mode & {
+		color: white;
+	}
 }
 
 .control-buttons {

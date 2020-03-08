@@ -1,0 +1,17 @@
+<div id="app"></div>
+
+<template id="template">
+	<p>
+		Hello, {{ name }}!
+	</p>
+</template>
+
+<script>
+	const app = new Vue({
+		el: '#app',
+		template: '#template',
+		data: {
+			name: 'Vue'
+		}
+	});
+</script>

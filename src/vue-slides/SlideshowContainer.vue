@@ -29,7 +29,7 @@
 				</template>
 			</div>
 
-			<p class="slideshow-state">
+			<p class="slideshow-pagination">
 				{{ $slides.slide.index + 1 }}
 				/
 				{{ $slidesConfig.slides.length }}
