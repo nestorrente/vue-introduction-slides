@@ -8,9 +8,11 @@ import Vuelcome from '@/slides/Vuelcome.vue';
 import AboutTheAuthor from '@/slides/AboutTheAuthor.vue';
 import VueFeatures from '@/slides/VueFeatures.vue';
 import AboutEvanYou from '@/slides/AboutEvanYou.vue';
-import VueInstance from '@/slides/VueInstance.vue';
-import TemplateOption from '@/slides/TemplateOption.vue';
-import RenderFunction from '@/slides/RenderFunction.vue';
+import VueInstance from '@/slides/components/VueInstance.vue';
+import TemplateOption from '@/slides/components/TemplateOption.vue';
+import RenderFunction from '@/slides/components/RenderFunction.vue';
+import ComponentRegistration from '@/slides/components/ComponentRegistration.vue';
+import DataOption from '@/slides/components/data/DataOption.vue';
 
 Vue.use(VueSlideshowEngine);
 
@@ -42,8 +44,10 @@ export default new VueSlideshowEngine({
 		{component: VueFeatures, steps: 2},
 		createTitleSlide('Vue instance & Components'),
 		VueInstance,
+		DataOption,
 		TemplateOption,
 		RenderFunction,
+		ComponentRegistration,
 		createTitleSlide('State management'),
 		createTitleSlide('Calling external APIs'),
 		createTitleSlide('Performance'),

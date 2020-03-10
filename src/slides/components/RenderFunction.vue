@@ -13,14 +13,29 @@
 	import CommonSlideMarkup from '@/slides/CommonSlideMarkup.vue';
 	import VueInstanceSample from '@/slides/samples/vue-instance/VueInstanceSample.vue';
 	import Window from '@/slides/Window.vue';
-	import code from 'raw-loader!./samples/vue-instance/VueInstanceSampleRenderFunction.txt';
 
 	@Component({
 		components: {Window, VueInstanceSample, CommonSlideMarkup}
 	})
 	export default class RenderFunction extends Vue {
 
-		private code: string = code;
+		private code: string = `
+			<div id="app"></div>
+
+			<script>
+				const app = new Vue({
+					el: '#app',
+					render(createElement) {
+						return createElement('p', [
+							\`Hello, \${this.name}!\`
+						]);
+					},
+					data: {
+						name: 'Vue'
+					}
+				});
+			\u003c/script>
+`;
 
 	}
 </script>

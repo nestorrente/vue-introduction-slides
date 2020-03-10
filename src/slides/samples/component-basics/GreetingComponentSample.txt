@@ -1,0 +1,16 @@
+<template id="greeting-template">
+	<p>
+		Hello, {{ name }}!
+	</p>
+</div>
+
+<script>
+	Vue.component('greeting', {
+		template: '#greeting-template',
+		data() {
+			return {
+				name: 'Vue'
+			};
+		}
+	});
+</script>

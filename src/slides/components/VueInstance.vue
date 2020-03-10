@@ -12,6 +12,7 @@
 				<VueInstanceSample ref="app"/>
 			</Window>
 		</div>
+		<GlobalContext name="app" :getter="() => $refs.app"/>
 	</CommonSlideMarkup>
 </template>
 
@@ -20,28 +21,15 @@
 	import CommonSlideMarkup from '@/slides/CommonSlideMarkup.vue';
 	import VueInstanceSample from '@/slides/samples/vue-instance/VueInstanceSample.vue';
 	import Window from '@/slides/Window.vue';
-	import code from 'raw-loader!./samples/vue-instance/VueInstanceSample.txt';
-
-	declare global {
-		interface Window {
-			app?: any;
-		}
-	}
+	import code from 'raw-loader!../samples/vue-instance/VueInstanceSample.txt';
+	import GlobalContext from '@/components/GlobalContext.vue';
 
 	@Component({
-		components: {Window, VueInstanceSample, CommonSlideMarkup}
+		components: {GlobalContext, Window, VueInstanceSample, CommonSlideMarkup}
 	})
 	export default class VueInstance extends Vue {
 
 		private code: string = code;
-
-		private mounted() {
-			window.app = this.$refs.app;
-		}
-
-		private unmounted() {
-			delete window.app;
-		}
 
 	}
 </script>
