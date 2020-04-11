@@ -1,4 +1,4 @@
-import VueSlidesPlugin from '@/vue-slides/VueSlidesPlugin';
+import VueSlidesPlugin from '@/vue-slides/plugin/VueSlidesPlugin';
 
 export * from '@/vue-slides/types';
 

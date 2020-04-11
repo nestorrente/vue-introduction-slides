@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {SlidesExtendedVue} from '@/vue-slides/vue';
+import {SlidesExtendedVue} from '@/vue-slides/plugin/vue';
 import SlideshowContext from '@/vue-slides/SlideshowContext.vue';
 import {isVueSlidesContext} from '@/vue-slides/internals';
 

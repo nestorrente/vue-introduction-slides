@@ -10,7 +10,7 @@
 
 <script lang="ts">
 	import {Component, Prop, Vue} from 'vue-property-decorator';
-	import {CssProperties, SlideDefinition} from '@/vue-slides/index';
+	import {CssProperties, SlideDefinition} from '@/vue-slides';
 
 	@Component
 	export default class SlideContext extends Vue {
@@ -28,7 +28,7 @@
 		private readonly step!: number;
 
 		private get cssProperties(): CssProperties {
-			return this.definition && this.definition.css && this.definition.css.slide || {};
+			return this.definition?.css?.slide ?? {};
 		}
 
 	}

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {SlidesExtendedVue} from '@/vue-slides/vue';
+import {SlidesExtendedVue} from '@/vue-slides/plugin/vue';
 
 export default function defineProperties() {
 	Object.defineProperties(Vue.prototype, {

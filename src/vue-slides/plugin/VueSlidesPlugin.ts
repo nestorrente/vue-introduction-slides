@@ -4,7 +4,7 @@ import {SlideDefinition, VueSlidesOptions} from '@/vue-slides/types';
 
 export default class VueSlidesPlugin {
 
-	// Every Vue plugin must have an "install" method
+	// Every Vue plugin must have a static "install" method
 	public static readonly install = install;
 
 	public readonly baseRoute: string;

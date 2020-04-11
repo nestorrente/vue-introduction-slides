@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueSlidesPlugin from '@/vue-slides/VueSlidesPlugin';
+import VueSlidesPlugin from '@/vue-slides/plugin/VueSlidesPlugin';
 import {VueSlidesContext} from '@/vue-slides/types';
 
 export interface SlidesExtendedVue extends Vue {
@@ -9,7 +9,6 @@ export interface SlidesExtendedVue extends Vue {
 }
 
 declare module 'vue/types/vue' {
-
 	interface Vue {
 		$slidesConfig: VueSlidesPlugin;
 		$slides: VueSlidesContext;

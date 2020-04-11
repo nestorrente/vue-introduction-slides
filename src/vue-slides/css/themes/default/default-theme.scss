@@ -169,7 +169,7 @@ code:not(.hljs) {
 
 		&:disabled {
 			pointer-events: none;
-			opacity: .2;
+			opacity: 0;
 		}
 
 		.dark-mode & {
