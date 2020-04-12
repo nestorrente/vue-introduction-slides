@@ -3,8 +3,8 @@
 			v-if="touchDevice"
 			:options="hammerOptions"
 			:swipe-options="swipeOptions"
-			@swiperight="$slides.goPreviousSlide()"
-			@swipeleft="$slides.goNextSlide()"
+			@swiperight="$emit('swipe-right')"
+			@swipeleft="$emit('swipe-left')"
 	>
 		<slot/>
 	</v-touch>
@@ -15,8 +15,8 @@
 
 <script lang="ts">
 	import {Component, Vue} from 'vue-property-decorator';
-	import SlideContext from '@/vue-slides/SlideContext.vue';
-	import ControlButtons from '@/vue-slides/ControlButtons.vue';
+	import SlideContext from '@/vue-slides/views/SlideContext.vue';
+	import ControlButtons from '@/vue-slides/views/controls/ControlButtons.vue';
 	import Hammer from 'hammerjs';
 	import {isTouchDevice} from '@/vue-slides/internals';
 	import {Dictionary} from '@/util/basic-types';

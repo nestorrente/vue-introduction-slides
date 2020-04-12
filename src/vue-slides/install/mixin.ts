@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {SlidesExtendedVue} from '@/vue-slides/plugin/vue';
-import SlideshowContext from '@/vue-slides/SlideshowContext.vue';
+import SlideshowContext from '@/vue-slides/views/SlideshowContext.vue';
 import {isVueSlidesContext} from '@/vue-slides/internals';
 
 export default function installMixin() {
@@ -30,7 +30,7 @@ function initializeSlidesConfigProperty(component: SlidesExtendedVue) {
 		]);
 
 	} else {
-		component._slidesConfig = component.$parent && component.$parent._slidesConfig;
+		component._slidesConfig = component.$parent?._slidesConfig;
 	}
 }
 
@@ -38,6 +38,6 @@ function initializeSlidesProperty(component: SlidesExtendedVue) {
 	if (isVueSlidesContext(component)) {
 		component._slides = component;
 	} else {
-		component._slides = component.$parent && component.$parent._slides;
+		component._slides = component.$parent?._slides;
 	}
 }

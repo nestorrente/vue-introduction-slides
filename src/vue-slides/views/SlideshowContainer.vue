@@ -1,59 +1,36 @@
 <template>
-	<TouchEventsElement>
+	<TouchEventsElement
+			@swipe-right="$slides.goPreviousSlide()"
+			@swipe-left="$slides.goNextSlide()"
+	>
 		<div
 				class="slideshow-container"
-				:class="[{'dark-mode': slide && slide.darkMode}, slideshowContainerCssProperties.classes]"
+				:class="slideshowContainerClasses"
 				:style="slideshowContainerCssProperties.styles"
 		>
-			<div
-					class="slideshow"
-					:class="slideshowCssProperties.classes"
-					:style="slideshowCssProperties.styles"
-			>
-				<template v-if="slide != null">
-
-					<slot name="before-slide"/>
-
-					<transition
-							:name="slideTransition"
-							@before-enter="$emit('transition-start')"
-							@after-leave="$emit('transition-end')"
-					>
-						<SlideContext
-								:key="slide.name"
-								:definition="slide"
-								:step="slideInitialStep"
-						/>
-					</transition>
-
-				</template>
-			</div>
-
-			<p class="slideshow-pagination">
-				{{ $slides.slide.index + 1 }}
-				/
-				{{ $slidesConfig.slides.length }}
-			</p>
+			<Slideshow :slide="slide" :direction="direction"/>
 
 			<ControlButtons/>
+
+			<SlideshowPagination/>
+			<SlideshowProgress/>
 		</div>
 	</TouchEventsElement>
 </template>
 
 <script lang="ts">
 	import {Component, Prop, Vue} from 'vue-property-decorator';
-	import {CssProperties, MovementDirection, SlideDefinition} from '@/vue-slides/types';
-	import SlideContext from '@/vue-slides/SlideContext.vue';
-	import ControlButtons from '@/vue-slides/ControlButtons.vue';
-	import Hammer from 'hammerjs';
-	import TouchEventsElement from '@/vue-slides/TouchEventsElement.vue';
+	import {CssClassList, CssProperties, MovementDirection, SlideDefinition} from '@/vue-slides/types';
+	import ControlButtons from '@/vue-slides/views/controls/ControlButtons.vue';
+	import TouchEventsElement from '@/vue-slides/views/TouchEventsElement.vue';
+	import SlideshowPagination from '@/vue-slides/views/SlideshowPagination.vue';
+	import Slideshow from '@/vue-slides/views/Slideshow.vue';
+	import SlideshowProgress from '@/vue-slides/views/SlideshowProgress.vue';
 
 	@Component({
-		components: {TouchEventsElement, ControlButtons, SlideContext}
+		components: {SlideshowProgress, TouchEventsElement, Slideshow, SlideshowPagination, ControlButtons}
 	})
 	export default class SlideshowContainer extends Vue {
-
-		private swipeDirection: number = Hammer.DIRECTION_HORIZONTAL;
 
 		@Prop({
 			type: Object,
@@ -67,27 +44,26 @@
 		})
 		private direction!: MovementDirection;
 
-		private get slideInitialStep(): number {
-			return this.slide != null && this.direction === MovementDirection.BACKWARDS ? this.slide.steps : 1;
-		}
-
-		private get slideshowCssProperties(): CssProperties {
-			return this.slide && this.slide.css.slideshow || {};
-		}
-
 		private get slideshowContainerCssProperties(): CssProperties {
 			return this.slide && this.slide.css.slideshowContainer || {};
 		}
 
-		private get slideTransition(): string | null {
-			switch (this.direction) {
-				case MovementDirection.BACKWARDS:
-					return 'slide-change-backwards';
-				case MovementDirection.FORWARD:
-					return 'slide-change-forward';
-				default:
-					return null;
+		private get slideshowContainerClasses(): CssClassList[] {
+
+			const builtInClasses: CssClassList = {
+				'dark-mode': this.slide?.darkMode
+			};
+
+			const classLists: CssClassList[] = [
+				builtInClasses
+			];
+
+			if (this.slideshowContainerCssProperties.classes) {
+				classLists.push(this.slideshowContainerCssProperties.classes);
 			}
+
+			return classLists;
+
 		}
 
 		private mounted(): void {
@@ -129,12 +105,20 @@
 					}
 					event.preventDefault();
 					break;
+				case 'PageUp':
+					this.$slides.goPreviousSlide();
+					event.preventDefault();
+					break;
+				case 'PageDown':
+					this.$slides.goNextSlide();
+					event.preventDefault();
+					break;
 				case 'Home':
-					this.$slides.showSlide(1);
+					this.$slides.goStart();
 					event.preventDefault();
 					break;
 				case 'End':
-					this.$slides.showSlide(this.$slidesConfig.slides.length);
+					this.$slides.goEnd();
 					event.preventDefault();
 					break;
 				default:

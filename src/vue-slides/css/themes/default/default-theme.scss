@@ -141,8 +141,8 @@ code:not(.hljs) {
 
 .slideshow-pagination {
 	position: absolute;
-	bottom: .75em;
-	right: 3.5em;
+	bottom: 1.25em;
+	right: 4.5em;
 	text-align: right;
 	color: $vue-color-dark;
 
@@ -228,4 +228,13 @@ code:not(.hljs) {
 		padding: 0.5em;
 	}
 
+}
+
+.slideshow-progress-background {
+	//background: $vue-color-dark;
+
+	.slideshow-progress {
+		transition: width ease-out .2s;
+		background: $vue-color;
+	}
 }
