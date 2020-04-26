@@ -1,7 +1,7 @@
 <template>
 	<TouchEventsElement
-			@swipe-right="$slides.goPreviousSlide()"
-			@swipe-left="$slides.goNextSlide()"
+			@swipe-right="$slideshow.goPreviousSlide()"
+			@swipe-left="$slideshow.goNextSlide()"
 	>
 		<div
 				class="slideshow-container"
@@ -21,11 +21,11 @@
 <script lang="ts">
 	import {Component, Prop, Vue} from 'vue-property-decorator';
 	import {CssClassList, CssProperties, MovementDirection, SlideDefinition} from '@/vue-slides/types';
-	import ControlButtons from '@/vue-slides/views/controls/ControlButtons.vue';
-	import TouchEventsElement from '@/vue-slides/views/TouchEventsElement.vue';
-	import SlideshowPagination from '@/vue-slides/views/SlideshowPagination.vue';
-	import Slideshow from '@/vue-slides/views/Slideshow.vue';
-	import SlideshowProgress from '@/vue-slides/views/SlideshowProgress.vue';
+	import ControlButtons from '@/vue-slides/views/slideshow/controls/ControlButtons.vue';
+	import TouchEventsElement from '@/vue-slides/views/slideshow/TouchEventsElement.vue';
+	import SlideshowPagination from '@/vue-slides/views/slideshow/SlideshowPagination.vue';
+	import Slideshow from '@/vue-slides/views/slideshow/Slideshow.vue';
+	import SlideshowProgress from '@/vue-slides/views/slideshow/SlideshowProgress.vue';
 
 	@Component({
 		components: {SlideshowProgress, TouchEventsElement, Slideshow, SlideshowPagination, ControlButtons}
@@ -34,9 +34,9 @@
 
 		@Prop({
 			type: Object,
-			required: false
+			required: true
 		})
-		private slide?: SlideDefinition;
+		private slide!: SlideDefinition;
 
 		@Prop({
 			type: String,
@@ -45,13 +45,13 @@
 		private direction!: MovementDirection;
 
 		private get slideshowContainerCssProperties(): CssProperties {
-			return this.slide && this.slide.css.slideshowContainer || {};
+			return this.slide.css.slideshowContainer || {};
 		}
 
 		private get slideshowContainerClasses(): CssClassList[] {
 
 			const builtInClasses: CssClassList = {
-				'dark-mode': this.slide?.darkMode
+				'dark-mode': this.slide.darkMode
 			};
 
 			const classLists: CssClassList[] = [
@@ -83,42 +83,42 @@
 			switch (event.key) {
 				case 'ArrowLeft':
 					if (event.ctrlKey) {
-						this.$slides.goPreviousSlide();
+						this.$slideshow.goPreviousSlide();
 					} else {
-						this.$slides.goPreviousStep();
+						this.$slideshow.goPreviousStep();
 					}
 					event.preventDefault();
 					break;
 				case 'ArrowRight':
 					if (event.ctrlKey) {
-						this.$slides.goNextSlide();
+						this.$slideshow.goNextSlide();
 					} else {
-						this.$slides.goNextStep();
+						this.$slideshow.goNextStep();
 					}
 					event.preventDefault();
 					break;
 				case ' ':
 					if (event.shiftKey) {
-						this.$slides.goPreviousStep();
+						this.$slideshow.goPreviousStep();
 					} else {
-						this.$slides.goNextStep();
+						this.$slideshow.goNextStep();
 					}
 					event.preventDefault();
 					break;
 				case 'PageUp':
-					this.$slides.goPreviousSlide();
+					this.$slideshow.goPreviousSlide();
 					event.preventDefault();
 					break;
 				case 'PageDown':
-					this.$slides.goNextSlide();
+					this.$slideshow.goNextSlide();
 					event.preventDefault();
 					break;
 				case 'Home':
-					this.$slides.goStart();
+					this.$slideshow.goStart();
 					event.preventDefault();
 					break;
 				case 'End':
-					this.$slides.goEnd();
+					this.$slideshow.goEnd();
 					event.preventDefault();
 					break;
 				default:
@@ -129,8 +129,8 @@
 		private isSlideOrDescendantElement(eventTarget: EventTarget | null) {
 			// FIXME find a better way to know this
 			return eventTarget instanceof HTMLElement && (
-				eventTarget.classList.contains('slide')
-				|| eventTarget.closest('.slide') != null
+					eventTarget.classList.contains('slide')
+					|| eventTarget.closest('.slide') != null
 			);
 		}
 

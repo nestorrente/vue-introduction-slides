@@ -24,7 +24,7 @@
 			const {
 				absoluteStep,
 				totalSteps
-			} = this.$slides;
+			} = this.$slideshow;
 
 			// We want the first step to be the 0%
 			// and the last step to be the 100%,
@@ -37,9 +37,13 @@
 		}
 
 		@Watch('stepProgress')
-		private onStepProgressChange(stepProgress: number) {
+		private updateProgressCssVariable(stepProgress: number) {
 			const cssVariableValue = String(stepProgress);
 			this.$refs.slideshowProgress.style.setProperty(CSS_VARIABLE_NAME, cssVariableValue);
+		}
+
+		private mounted() {
+			this.updateProgressCssVariable(this.stepProgress);
 		}
 
 	}

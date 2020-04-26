@@ -4,10 +4,10 @@
 			Elements can appear from 4 different directions:
 		</p>
 		<ol>
-			<li v-appear="$slides.step > 1" class="top">Top</li>
-			<li v-appear="$slides.step > 2" class="right">Right</li>
-			<li v-appear="$slides.step > 3" class="bottom">Bottom</li>
-			<li v-appear="$slides.step > 4" class="left">Left</li>
+			<li v-appear="$slideshow.step > 1" class="top">Top</li>
+			<li v-appear="$slideshow.step > 2" class="right">Right</li>
+			<li v-appear="$slideshow.step > 3" class="bottom">Bottom</li>
+			<li v-appear="$slideshow.step > 4" class="left">Left</li>
 		</ol>
 	</CommonSlideMarkup>
 </template>

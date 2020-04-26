@@ -2,9 +2,9 @@
 	<button
 			type="button"
 			class="next-slide-button"
-			:disabled="$slides.absoluteStep === $slides.totalSteps"
-			@click="$slides.goNextStep()"
-			@click.ctrl="$slides.goNextSlide()"
+			:disabled="$slideshow.absoluteStep === $slideshow.totalSteps"
+			@click="$slideshow.goNextStep()"
+			@click.ctrl="$slideshow.goNextSlide()"
 	>
 		<i class="fa fa-chevron-right"></i>
 	</button>

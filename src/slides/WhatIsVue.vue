@@ -6,7 +6,7 @@
 		<p class="mt-5">
 			&hellip;
 		</p>
-		<p v-appear="$slides.step > 1">
+		<p v-appear="$slideshow.step > 1">
 			what does this mean?
 		</p>
 	</CommonSlideMarkup>

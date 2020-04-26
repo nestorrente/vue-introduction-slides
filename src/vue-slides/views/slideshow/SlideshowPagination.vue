@@ -1,6 +1,6 @@
 <template>
-	<p class="slideshow-pagination">
-		{{ $slides.slide.index + 1 }}
+	<p v-if="$slideshow.slide != null" class="slideshow-pagination">
+		{{ $slideshow.slide.index + 1 }}
 		/
 		{{ $slidesConfig.slides.length }}
 	</p>

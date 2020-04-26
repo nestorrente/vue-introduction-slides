@@ -15,8 +15,8 @@
 
 <script lang="ts">
 	import {Component, Vue} from 'vue-property-decorator';
-	import SlideContext from '@/vue-slides/views/SlideContext.vue';
-	import ControlButtons from '@/vue-slides/views/controls/ControlButtons.vue';
+	import SlideContext from '@/vue-slides/views/slideshow/SlideContext.vue';
+	import ControlButtons from '@/vue-slides/views/slideshow/controls/ControlButtons.vue';
 	import Hammer from 'hammerjs';
 	import {isTouchDevice} from '@/vue-slides/internals';
 	import {Dictionary} from '@/util/basic-types';
@@ -24,7 +24,7 @@
 	@Component({
 		components: {ControlButtons, SlideContext}
 	})
-	export default class SlideshowContainer extends Vue {
+	export default class TouchEventsElement extends Vue {
 
 		private touchDevice: boolean = isTouchDevice();
 

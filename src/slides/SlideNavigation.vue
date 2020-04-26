@@ -3,7 +3,7 @@
 		<p class="mt-10">You can navigate from one slide to another.</p>
 		<p class="mt-5">
 			Check this out!
-			<a href="#" @click.prevent="$slides.showSlide('first')">Go back to the first slide</a>.
+			<a href="#" @click.prevent="$slideshow.showSlide('first')">Go back to the first slide</a>.
 		</p>
 	</CommonSlideMarkup>
 </template>

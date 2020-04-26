@@ -15,7 +15,7 @@
 				></li>
 			</ul>
 		</div>
-		<div v-appear="$slides.step > 1">
+		<div v-appear="$slideshow.step > 1">
 			<p>Extra features:</p>
 			<div class="grid grid-cols-2">
 				<ul>

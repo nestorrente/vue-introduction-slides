@@ -1,5 +1,5 @@
 <template>
-	<div class="control-buttons" v-if="$slides.slide">
+	<div class="control-buttons" v-if="$slideshow.slide">
 
 		<div class="direction-buttons">
 			<PreviousSlideButton/>
@@ -15,9 +15,9 @@
 
 <script lang="ts">
 	import {Component, Vue} from 'vue-property-decorator';
-	import PreviousSlideButton from '@/vue-slides/views/controls/PreviousSlideButton.vue';
-	import NextSlideButton from '@/vue-slides/views/controls/NextSlideButton.vue';
-	import FullScreenButton from '@/vue-slides/views/controls/FullScreenButton.vue';
+	import PreviousSlideButton from '@/vue-slides/views/slideshow/controls/PreviousSlideButton.vue';
+	import NextSlideButton from '@/vue-slides/views/slideshow/controls/NextSlideButton.vue';
+	import FullScreenButton from '@/vue-slides/views/slideshow/controls/FullScreenButton.vue';
 
 	@Component({
 		components: {FullScreenButton, NextSlideButton, PreviousSlideButton}

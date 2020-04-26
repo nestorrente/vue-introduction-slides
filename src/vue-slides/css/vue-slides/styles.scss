@@ -1,0 +1,69 @@
+@import "variables";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	--aspect-ratio-transformer: 1vw;
+	font-size: calc(2 * var(--aspect-ratio-transformer));
+}
+
+@media (min-aspect-ratio: #{$aspect-ratio-width}/#{$aspect-ratio-height}) {
+	html {
+		--aspect-ratio-transformer: calc(1vh * #{$aspect-ratio-width} / #{$aspect-ratio-height});
+	}
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+input,
+textarea,
+button {
+	outline: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+}
+
+p {
+	margin-top: .5em;
+}
+
+h1 {
+	margin-bottom: 0.65em;
+}
+
+h2 {
+	margin-bottom: 0.6em;
+}
+
+h3 {
+	margin-bottom: 0.55em;
+}
+
+h4, h5, h6, p {
+	margin-bottom: 0.5em;
+}
+
+h1 {
+	text-align: center;
+}
+
+ol, ul {
+	margin-top: .5em;
+	padding-left: 1.25em;
+	text-align: left;
+
+	li {
+		margin-bottom: .5em;
+	}
+}

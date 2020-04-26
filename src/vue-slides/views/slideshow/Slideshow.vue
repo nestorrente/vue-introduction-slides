@@ -23,7 +23,7 @@
 <script lang="ts">
 	import {Component, Prop, Vue} from 'vue-property-decorator';
 	import {CssProperties, MovementDirection, SlideDefinition} from '@/vue-slides/types';
-	import SlideContext from '@/vue-slides/views/SlideContext.vue';
+	import SlideContext from '@/vue-slides/views/slideshow/SlideContext.vue';
 
 	@Component({
 		components: {SlideContext}

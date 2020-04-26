@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import {SlidesExtendedVue} from '@/vue-slides/plugin/vue';
-import SlideshowContext from '@/vue-slides/views/SlideshowContext.vue';
 import {isVueSlidesContext} from '@/vue-slides/internals';
+import PrintContext from '@/vue-slides/views/print/PrintView.vue';
+import SlideshowView from '@/vue-slides/views/slideshow/SlideshowView.vue';
 
 export default function installMixin() {
 	Vue.mixin({
@@ -23,9 +24,20 @@ function initializeSlidesConfigProperty(component: SlidesExtendedVue) {
 				redirect: component.$slidesConfig.baseRoute + '/1'
 			},
 			{
-				path: component._slidesConfig.baseRoute + '/:slideNumber(\\d+)',
+				path: component._slidesConfig.baseRoute + '/print',
+				name: 'print',
+				component: PrintContext
+			},
+			{
+				path: component._slidesConfig.baseRoute + '/:slideNumber(\\d+)/:step(\\d+)?',
 				name: 'slides',
-				component: SlideshowContext
+				component: SlideshowView,
+				props: route => {
+					return {
+						slideNumber: Number(route.params.slideNumber),
+						step: route.params.step ? Number(route.params.step) : undefined
+					};
+				}
 			}
 		]);
 
@@ -36,8 +48,8 @@ function initializeSlidesConfigProperty(component: SlidesExtendedVue) {
 
 function initializeSlidesProperty(component: SlidesExtendedVue) {
 	if (isVueSlidesContext(component)) {
-		component._slides = component;
+		component._slideshow = component;
 	} else {
-		component._slides = component.$parent?._slides;
+		component._slideshow = component.$parent?._slideshow;
 	}
 }

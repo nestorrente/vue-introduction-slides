@@ -3,13 +3,15 @@ import App from '@/App.vue';
 import router from '@/router';
 import slides from '@/slides';
 import '@fortawesome/fontawesome-free/css/all.css';
-import 'tailwindcss/dist/utilities.css';
+import './vue-slides/css/tailwind.css';
 import '@/assets/css/custom.scss';
 import '@/highlight-config';
+import VueCompositionApi from '@vue/composition-api';
 import VueTouch from 'vue-touch';
 
 Vue.config.productionTip = false;
 
+Vue.use(VueCompositionApi);
 Vue.use(VueTouch, {name: 'v-touch'});
 
 new Vue({

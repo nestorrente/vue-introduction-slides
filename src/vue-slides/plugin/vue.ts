@@ -4,14 +4,14 @@ import {VueSlidesContext} from '@/vue-slides/types';
 
 export interface SlidesExtendedVue extends Vue {
 	_slidesConfig: VueSlidesPlugin;
-	_slides: VueSlidesContext;
+	_slideshow: VueSlidesContext;
 	$parent: SlidesExtendedVue;
 }
 
 declare module 'vue/types/vue' {
 	interface Vue {
 		$slidesConfig: VueSlidesPlugin;
-		$slides: VueSlidesContext;
+		$slideshow: VueSlidesContext;
 	}
 }
 

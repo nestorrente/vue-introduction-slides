@@ -8,9 +8,9 @@ export default function defineProperties() {
 				return this._slidesConfig;
 			}
 		},
-		$slides: {
+		$slideshow: {
 			get(this: SlidesExtendedVue) {
-				return this._slides;
+				return this._slideshow;
 			}
 		}
 	});

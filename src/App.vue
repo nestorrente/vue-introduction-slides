@@ -1,15 +1,12 @@
 <template>
-	<AppLayout></AppLayout>
+	<router-view/>
 </template>
 
 <script lang="ts">
 	import Vue from 'vue';
 	import {Component} from 'vue-property-decorator';
-	import AppLayout from '@/layout/AppLayout.vue';
 
-	@Component({
-		components: {AppLayout}
-	})
+	@Component
 	export default class App extends Vue {
 	}
 </script>

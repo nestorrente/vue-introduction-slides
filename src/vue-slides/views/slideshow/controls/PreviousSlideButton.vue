@@ -2,9 +2,9 @@
 	<button
 			type="button"
 			class="previous-slide-button"
-			:disabled="$slides.absoluteStep === 1"
-			@click="$slides.goPreviousStep()"
-			@click.ctrl="$slides.goPreviousSlide()"
+			:disabled="$slideshow.absoluteStep === 1"
+			@click="$slideshow.goPreviousStep()"
+			@click.ctrl="$slideshow.goPreviousSlide()"
 	>
 		<i class="fa fa-chevron-left"></i>
 	</button>

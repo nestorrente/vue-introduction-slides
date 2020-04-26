@@ -50,7 +50,7 @@ export type StepIdentifier = number | 'first' | 'last';
 export interface VueSlidesContext {
 
 	readonly direction: MovementDirection;
-	readonly slide?: SlideDefinition;
+	readonly slide: SlideDefinition;
 	readonly step: number;
 
 	readonly absoluteStep: number;
