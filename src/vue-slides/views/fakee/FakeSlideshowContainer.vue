@@ -8,8 +8,8 @@ r
 	>
 		<Slideshow :slide="slide" :direction="direction"/>
 
-		<SlideshowPagination/>
-		<SlideshowProgress/>
+		<SlideshowPagination v-if="!hidePagination"/>
+		<SlideshowProgress v-if="!hideProgress"/>
 	</div>
 </template>
 
@@ -44,11 +44,17 @@ r
 		})
 		private direction!: MovementDirection;
 
-		// @Prop({
-		// 	type: [String, Number],
-		// 	required: true
-		// })
-		// private width!: string | number;
+		@Prop({
+			type: Boolean,
+			default: false
+		})
+		private hidePagination!: boolean;
+
+		@Prop({
+			type: Boolean,
+			default: false
+		})
+		private hideProgress!: boolean;
 
 		private get slideshowContainerCssProperties(): CssProperties {
 			return this.slide.css.slideshowContainer || {};
@@ -71,31 +77,6 @@ r
 			return classLists;
 
 		}
-
-		// private mounted() {
-		// 	this.updateWidthCssVariable();
-		// }
-		//
-		// @Watch('width')
-		// private onWidthChange(width: number) {
-		// 	// Ignore if component has not been mounted yet
-		// 	if (this.$refs.fakeSlideshowContainer) {
-		// 		this.updateWidthCssVariable();
-		// 	}
-		// }
-		//
-		// private updateWidthCssVariable() {
-		// 	const cssWidthValue = this.convertToCssSizeValue(this.width);
-		// 	this.$refs.fakeSlideshowContainer.style.setProperty(FAKE_SLIDESHOW_WIDTH_CSS_VARIABLE, cssWidthValue);
-		// }
-		//
-		// private convertToCssSizeValue(size: string | number): string {
-		// 	if (typeof size === 'number') {
-		// 		return size + 'px';
-		// 	} else {
-		// 		return size;
-		// 	}
-		// }
 
 	}
 </script>

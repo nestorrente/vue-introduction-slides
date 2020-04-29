@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import {Component} from 'vue-router/types/router';
 import {Dictionary, OnlyRequired} from '@/util/basic-types';
 
@@ -30,6 +31,7 @@ export interface SlideDefinition extends Readonly<SlideConfig> {
 	readonly index: number;
 	readonly first: boolean;
 	readonly last: boolean;
+	readonly absoluteStepOffset: number;
 }
 
 export interface VueSlidesOptions {
@@ -47,7 +49,7 @@ export enum MovementDirection {
 export type SlideIdentifier = string | number | 'first' | 'last';
 export type StepIdentifier = number | 'first' | 'last';
 
-export interface VueSlidesContext {
+export interface VueSlidesContext extends Vue {
 
 	readonly direction: MovementDirection;
 	readonly slide: SlideDefinition;
@@ -69,5 +71,7 @@ export interface VueSlidesContext {
 	goEnd(): void;
 
 	showSlide(slide: SlideIdentifier, step?: StepIdentifier): void;
+
+	showAbsoluteStep(absoluteStep: StepIdentifier): void;
 
 }

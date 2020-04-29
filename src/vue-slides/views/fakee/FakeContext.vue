@@ -80,5 +80,9 @@
 			// Do nothing
 		}
 
+		public showAbsoluteStep(absoluteStep: StepIdentifier): void {
+			// Do nothing
+		}
+
 	}
 </script>

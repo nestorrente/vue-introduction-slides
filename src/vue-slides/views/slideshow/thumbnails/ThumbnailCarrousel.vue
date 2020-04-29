@@ -1,18 +1,26 @@
 <template>
 	<transition name="fade">
-		<div class="thumbnail-carrousel" v-show="visible">
+		<div
+				ref="thumbnailCarrouselDiv"
+				class="thumbnail-carrousel"
+				v-show="visible"
+		>
 			<template v-for="slide in $slidesConfig.slides">
 				<FakeContext
-						v-for="step in slide.steps"
+						v-for="(step, stepIndex) in slide.steps"
 						:key="slide.index + '-' + step"
 						:slide="slide"
 						:step="step"
 						v-slot="{direction}"
-						class="thumbnail-carrousel-item"
+						:class="{
+							'thumbnail-carrousel-item': true,
+							'selected': selectedThumbnailIndex === (slide.absoluteStepOffset + stepIndex)
+						}"
 				>
 					<FakeSlideshowContainer
 							:slide="slide"
 							:direction="direction"
+							hide-progress
 					/>
 				</FakeContext>
 			</template>
@@ -21,30 +29,46 @@
 </template>
 
 <script lang="ts">
-	import {Component, Vue} from 'vue-property-decorator';
+	import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 	import FakeContext from '@/vue-slides/views/fakee/FakeContext.vue';
 	import FakeSlideshowContainer from '@/vue-slides/views/fakee/FakeSlideshowContainer.vue';
+
+	const SELECTED_THUMBNAIL_INDEX_CSS_PROPERTY_NAME = '--selected-thumbnail-index';
 
 	@Component({
 		components: {FakeSlideshowContainer, FakeContext}
 	})
 	export default class ThumbnailCarrousel extends Vue {
 
-		private visible: boolean = false;
+		public $refs!: {
+			thumbnailCarrouselDiv: HTMLDivElement
+		};
 
-		private mounted(): void {
-			document.addEventListener('keydown', this.onKeyDown);
+		@Prop({
+			type: Boolean,
+			default: false
+		})
+		private readonly visible!: boolean;
+
+		@Prop({
+			type: Number,
+			default: 0
+		})
+		private readonly selectedThumbnailIndex!: number;
+
+		private mounted() {
+			this.updateSelectedThumbnailIndexCssProperty();
 		}
 
-		private beforeDestroy(): void {
-			document.removeEventListener('keydown', this.onKeyDown);
-		}
-
-		private onKeyDown(event: KeyboardEvent): void {
-			if (event.key === 'Escape') {
-				this.visible = !this.visible;
-				event.preventDefault();
+		@Watch('selectedThumbnailIndex', {immediate: true})
+		private onSelectedThumbnailIndexChange(selectedThumbnailIndex: number) {
+			if (this.$refs.thumbnailCarrouselDiv != null) {
+				this.updateSelectedThumbnailIndexCssProperty();
 			}
+		}
+
+		private updateSelectedThumbnailIndexCssProperty() {
+			this.$refs.thumbnailCarrouselDiv.style.setProperty(SELECTED_THUMBNAIL_INDEX_CSS_PROPERTY_NAME, String(this.selectedThumbnailIndex));
 		}
 
 	}

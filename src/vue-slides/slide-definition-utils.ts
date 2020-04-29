@@ -2,22 +2,52 @@ import {PartialSlideConfig, SlideDefinition} from '@/vue-slides/types';
 import {Component} from 'vue-router/types/router';
 
 export function normalizeSlidesConfig(slides: Array<PartialSlideConfig | Component>, darkMode: boolean): SlideDefinition[] {
+
+	// TODO think about a cleaner awy to calculate the absolute steps
+
+	let previousSlidesStepsCount = 0;
+
 	return slides.map((slide, index) => {
-		return normalizeSlideConfig(slide, index, slides.length, darkMode);
+
+		const slideDefinition = normalizeSlideConfig(slide, index, slides.length, previousSlidesStepsCount, darkMode);
+
+		previousSlidesStepsCount += slideDefinition.steps;
+
+		return slideDefinition;
+
 	});
+
 }
 
-function normalizeSlideConfig(slideConfigOrComponent: PartialSlideConfig | Component, index: number, totalSlides: number, darkMode: boolean): SlideDefinition {
-	return createSlideDefinition(index, ensureSlideConfig(slideConfigOrComponent), totalSlides, darkMode);
+function normalizeSlideConfig(
+		slideConfigOrComponent: PartialSlideConfig | Component,
+		index: number,
+		totalSlides: number,
+		stepsBeforeCount: number,
+		darkMode: boolean
+): SlideDefinition {
+	return createSlideDefinition(
+			index,
+			ensureSlideConfig(slideConfigOrComponent),
+			totalSlides,
+			stepsBeforeCount,
+			darkMode
+	);
 }
 
 function ensureSlideConfig(slideConfigOrComponent: PartialSlideConfig | Component): PartialSlideConfig {
 	return isSlideDefinition(slideConfigOrComponent)
-		? slideConfigOrComponent
-		: {component: slideConfigOrComponent};
+			? slideConfigOrComponent
+			: {component: slideConfigOrComponent};
 }
 
-function createSlideDefinition(index: number, slideConfig: PartialSlideConfig, totalSlides: number, darkMode: boolean): SlideDefinition {
+function createSlideDefinition(
+		index: number,
+		slideConfig: PartialSlideConfig,
+		totalSlides: number,
+		stepsBeforeCount: number,
+		darkMode: boolean
+): SlideDefinition {
 	return {
 		index,
 		darkMode,
@@ -25,6 +55,7 @@ function createSlideDefinition(index: number, slideConfig: PartialSlideConfig, t
 		last: index === totalSlides - 1,
 		name: `slide-${index}`,
 		steps: 1,
+		absoluteStepOffset: stepsBeforeCount,
 		css: {},
 		printSteps: 'all',
 		...slideConfig

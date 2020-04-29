@@ -108,6 +108,48 @@
 			this.showSlide('last', 'last');
 		}
 
+		public showAbsoluteStep(absoluteStep: StepIdentifier): void {
+			switch (absoluteStep) {
+				case 'first':
+					this.showSlide('first', 'first');
+					break;
+				case 'last':
+					this.showSlide('last', 'last');
+					break;
+				default:
+					const {slideIndex, step} = this.calculateSlideAndStepFromAbsoluteStep(absoluteStep);
+					this.showSlideByIndex(slideIndex, step);
+					break;
+			}
+		}
+
+		public calculateSlideAndStepFromAbsoluteStep(absoluteStep: number): { slideIndex: number, step: StepIdentifier } {
+
+			// FIXME refactor and clean this code - use the new "absoluteStepOffset" property of the SlideDefinition type
+
+			let previousStepCount = 0;
+
+			for (const slide of this.$slidesConfig.slides) {
+
+				const newStepCount = previousStepCount + slide.steps;
+
+				if (newStepCount >= absoluteStep) {
+					return {
+						slideIndex: slide.index,
+						step: absoluteStep - previousStepCount
+					};
+				}
+
+				previousStepCount = newStepCount;
+
+			}
+
+			return {
+				slideIndex: this.$slidesConfig.slides.length - 1,
+				step: 'last'
+			};
+		}
+
 		public showSlide(slide: SlideIdentifier, step?: StepIdentifier): void {
 
 			const slideNameOrIndex = this.transformSlideIdentifierToNameOrIndex(slide);
@@ -121,7 +163,9 @@
 		}
 
 		private transformSlideIdentifierToNameOrIndex(slideIdentifier: SlideIdentifier): string | number {
-			if (slideIdentifier === 'first') {
+			if (typeof slideIdentifier === 'number') {
+				return slideIdentifier - 1;
+			} else if (slideIdentifier === 'first') {
 				return 0;
 			} else if (slideIdentifier === 'last') {
 				return this.$slidesConfig.slides.length - 1;

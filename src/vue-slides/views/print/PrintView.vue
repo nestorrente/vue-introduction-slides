@@ -1,22 +1,22 @@
 <template>
 	<div class="print-view">
 		<template v-for="slide in $slidesConfig.slides">
-			<FakeContext
+			<div
 					v-for="step in slide.steps"
 					:key="slide.index + '-' + step"
-					:slide="slide"
-					:step="step"
-					v-slot="{direction}"
-					class="mt-10 mb-10"
-					:style="{
-						padding: '0 10vw'
-					}"
+					class="print-page"
 			>
-				<FakeSlideshowContainer
+				<FakeContext
 						:slide="slide"
-						:direction="direction"
-				/>
-			</FakeContext>
+						:step="step"
+						v-slot="{direction}"
+				>
+					<FakeSlideshowContainer
+							:slide="slide"
+							:direction="direction"
+					/>
+				</FakeContext>
+			</div>
 		</template>
 	</div>
 </template>

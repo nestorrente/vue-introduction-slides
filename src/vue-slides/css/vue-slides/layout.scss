@@ -141,21 +141,33 @@
 
 .thumbnail-carrousel-item {
 	$thumbnail-spacing: 2vw;
+	$thumbnail-width-rem: 16;
+	$thumbnail-item-offset: #{'(' + $thumbnail-spacing + ' + ' + $thumbnail-width-rem + 'rem)'};
+
+	$selected-thumbnail-scale-factor: 1.4;
+	$selected-thumbnail-width-rem: $thumbnail-width-rem * $selected-thumbnail-scale-factor;
+	$selected-thumbnail-middle-width-rem: #{$selected-thumbnail-width-rem / 2}rem;
+	$selected-thumbnail-extra-margin: #{($selected-thumbnail-width-rem - $thumbnail-width-rem) / 2}rem;
+
+	$translate-x-transform: translateX(calc(50vw - #{$selected-thumbnail-middle-width-rem} - var(--selected-thumbnail-index) * #{$thumbnail-item-offset}));
 
 	margin: 0 #{$thumbnail-spacing} 0 0;
 
-	$tumbnail-width-rem: 8;
-
-	&:first-child {
-		$thumbnail-middle-width: #{$tumbnail-width-rem / 2}rem;
-		$thumbnail-item-offset: #{'(' + $thumbnail-spacing + ' + ' + $tumbnail-width-rem + 'rem)'};
-		margin-left: calc(50vw - #{$thumbnail-middle-width} - var(--selected-thumbnail-index) * #{$thumbnail-item-offset});
-
-		transition: margin-left .2s ease-in-out;
-	}
+	transform: $translate-x-transform;
+	transition-property: transform, margin, border;
+	transition-duration: .2s;
+	transition-timing-function: ease-in-out;
 
 	.fake-slideshow-container {
-		--fake-slideshow-width: #{$tumbnail-width-rem}rem;
+		--fake-slideshow-width: #{$thumbnail-width-rem}rem;
+	}
+
+	&.selected {
+		z-index: 1000;
+		transform: $translate-x-transform scale($selected-thumbnail-scale-factor);
+		margin-right: calc(#{$thumbnail-spacing} + #{$selected-thumbnail-extra-margin});
+		margin-left: #{$selected-thumbnail-extra-margin};
+		border: 0.15em solid white;
 	}
 }
 
@@ -166,5 +178,10 @@
 
 	.fake-slideshow-container {
 		--fake-slideshow-width: 80vw;
+	}
+
+	.print-page {
+		margin: 2.5em 0;
+		padding: 0 10vw;
 	}
 }
