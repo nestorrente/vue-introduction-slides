@@ -196,7 +196,13 @@ code:not(.hljs) {
 	background: rgba(0, 0, 0, 0.7);
 }
 
-.thumbnail-carrousel-item.selected {
+.thumbnail-carrousel-item > .slideshow-container {
+	box-sizing: border-box;
+	border: 0.3em solid transparent;
+}
+
+.thumbnail-carrousel-item.selected > .slideshow-container,
+.thumbnail-carrousel-item:hover > .slideshow-container {
 	border-color: $vue-color;
 }
 

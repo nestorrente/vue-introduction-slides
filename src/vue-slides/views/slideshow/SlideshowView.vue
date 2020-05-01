@@ -5,9 +5,13 @@
 				:slide-number="slideNumber"
 				:step="step"
 		/>
+
+		<!--		<ControlButtons/>-->
+
 		<ThumbnailCarrousel
 				:visible="showingThumbnailCarrousel"
 				:selected-thumbnail-index="selectedThumbnailIndex"
+				@thumbnail-click="onThumbnailClick"
 		/>
 	</div>
 </template>
@@ -16,14 +20,16 @@
 	import {Component, Prop, Vue} from 'vue-property-decorator';
 	import SlideshowContext from '@/vue-slides/views/slideshow/SlideshowContext.vue';
 	import ThumbnailCarrousel from '@/vue-slides/views/slideshow/thumbnails/ThumbnailCarrousel.vue';
-	import {VueSlidesContext} from '@/vue-slides';
+	import {SlideDefinition, VueSlidesContext} from '@/vue-slides';
 
 	import {state} from '@/vue-slides/slides-store';
+	import {Consumer, Nullable} from '@/util/basic-types';
+	import ControlButtons from '@/vue-slides/views/slideshow/controls/ControlButtons.vue';
 
 	console.log(state);
 
 	@Component({
-		components: {ThumbnailCarrousel, SlideshowContext}
+		components: {ControlButtons, ThumbnailCarrousel, SlideshowContext}
 	})
 	export default class SlideshowView extends Vue {
 
@@ -44,14 +50,27 @@
 		public readonly step!: number;
 
 		private showingThumbnailCarrousel: boolean = false;
+
 		private selectedThumbnailIndex: number = 0;
+		private stopSlideshowWatcher: Nullable<Consumer<void>> = null;
 
 		private mounted(): void {
-			this.selectedThumbnailIndex = this.$refs.slideshow.absoluteStep - 1;
+			this.stopSlideshowWatcher = this.initializeSlideshowWatcher();
 			document.addEventListener('keydown', this.onKeyDown);
 		}
 
+		private initializeSlideshowWatcher() {
+			return this.$watch(() => {
+				return this.$refs.slideshow.absoluteStep;
+			}, (absoluteStep) => {
+				this.selectedThumbnailIndex = absoluteStep - 1;
+			}, {
+				immediate: true
+			});
+		}
+
 		private beforeDestroy(): void {
+			this.stopSlideshowWatcher!();
 			document.removeEventListener('keydown', this.onKeyDown);
 		}
 
@@ -158,6 +177,11 @@
 					eventTarget.classList.contains('slide')
 					|| eventTarget.closest('.slide') != null
 			);
+		}
+
+		private onThumbnailClick(slide: SlideDefinition, step: number) {
+			this.$refs.slideshow.showSlide(slide.index + 1, step);
+			this.showingThumbnailCarrousel = false;
 		}
 
 	}

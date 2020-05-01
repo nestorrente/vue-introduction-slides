@@ -16,6 +16,7 @@
 							'thumbnail-carrousel-item': true,
 							'selected': selectedThumbnailIndex === (slide.absoluteStepOffset + stepIndex)
 						}"
+						@click="$emit('thumbnail-click', slide, step)"
 				>
 					<FakeSlideshowContainer
 							:slide="slide"

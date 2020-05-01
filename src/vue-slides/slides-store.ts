@@ -1,15 +1,13 @@
 import Vue from 'vue';
 import {Dictionary} from '@/util/basic-types';
 
-interface State {
-	slideNumber: number;
-	step: number;
-}
-
-const mutableState = Vue.observable<State>({
+const mutableState = Vue.observable({
 	slideNumber: 1,
-	step: 1
+	step: 1,
+	a: 2
 });
+
+type State = typeof mutableState;
 
 export const state: Readonly<State> = createReadonlyProxy(mutableState);
 

@@ -167,7 +167,6 @@
 		transform: $translate-x-transform scale($selected-thumbnail-scale-factor);
 		margin-right: calc(#{$thumbnail-spacing} + #{$selected-thumbnail-extra-margin});
 		margin-left: #{$selected-thumbnail-extra-margin};
-		border: 0.15em solid white;
 	}
 }
 
