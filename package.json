@@ -13,7 +13,7 @@
 		"@vue/composition-api": "^0.5.0",
 		"core-js": "^3.6.5",
 		"highlight.js": "^9.18.1",
-		"tailwindcss": "^1.3.5",
+		"tailwindcss": "^1.4.5",
 		"vue": "^2.6.10",
 		"vue-class-component": "^7.0.2",
 		"vue-highlight.js": "^3.1.0",
