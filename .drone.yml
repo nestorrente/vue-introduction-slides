@@ -1,0 +1,23 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node:10
+    commands:
+      - npm install
+      - npm run build
+  - name: bake
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_user
+      password:
+        from_secret: docker_pass
+      repo: registry.nestorrente.com/v2/nestorrente/vue-slides
+      registry: registry.nestorrente.com/v2
+      tags: latest
+    when:
+      branch:
+        - master
+        - release/*
