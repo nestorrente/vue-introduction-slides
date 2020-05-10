@@ -67,9 +67,5 @@ export default new VueSlideshowEngine({
 			component: LightMode,
 			darkMode: false
 		},
-		{
-			component: CodeSample,
-			darkMode: false
-		},
 	]
 });
