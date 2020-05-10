@@ -1,5 +1,7 @@
 # Vue Slides
 
+[![Build Status](https://drone.nestorrente.com/api/badges/nestorrente/vue-introduction-slides/status.svg)](https://drone.nestorrente.com/nestorrente/vue-introduction-slides)
+
 ## Project setup
 ```
 npm install
