@@ -1,0 +1,10 @@
+ingress:
+  enabled: true
+  domain: nestorrente.com
+  subdomain: slides
+
+deployment:
+  image: registry.nestorrente.com/v2/nestorrente/vue-slides
+  containerPort: 80
+  imagePullSecrets:
+    - regcred
